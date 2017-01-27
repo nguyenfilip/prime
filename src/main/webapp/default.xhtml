@@ -2,16 +2,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      >
- 
-    <h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
  
     	<h1>JSF 2.0 + Spring Example</h1>
  
  		#{user.printMsgFromSpring()}
- 		
-    </h:body>
+    <h:panelGrid columns="2" cellpadding="5" styleClass="ui-grid">
+        <h:outputLabel for="basic" value="Basic Spinner: " />
+        <p:spinner id="basic" value="#{spinnerView.number1}" />
+
+        <h:outputLabel for="step" value="Step Factor: " />
+        <p:spinner id="step" value="#{spinnerView.number2}" stepFactor="0.25" />
+
+        <h:outputLabel for="minMax" value="Min/Max: " />
+        <p:spinner id="minMax" value="#{spinnerView.number3}" min="0" max="100" />
+
+        <h:outputLabel for="prefix" value="Prefix: " />
+        <p:spinner id="prefix" value="#{spinnerView.number4}" prefix="$" min="0" />
+
+        <h:outputLabel for="ajaxSpinner" value="Ajax Spinner: " />
+        <p:outputPanel>
+            <p:spinner id="ajaxSpinner" value="#{spinnerView.number5}">
+                <p:ajax update="ajaxSpinnerValue" process="@this" />
+            </p:spinner>
+            <h:outputText id="ajaxSpinnerValue" value="#{spinnerView.number5}" style="padding-left: 10px" />
+        </p:outputPanel>
+    </h:panelGrid>
+</h:body>
  
 </html>

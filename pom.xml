@@ -11,7 +11,11 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
-
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>6.0</version>
+        </dependency>
 		<!-- Spring framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -51,8 +55,18 @@
 		
 	</dependencies>
 
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>Prime Repo</name>
+            <url>http://repository.primefaces.org</url>
+        </repository>
+
+
+    </repositories>
 	<build>
-		<finalName>JavaServerFaces</finalName>
+
+        <finalName>JavaServerFaces</finalName>
 
 		<plugins>
 			<plugin>
