@@ -6,10 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.jsf.FacesContextUtils;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
@@ -17,8 +14,20 @@ import java.io.Serializable;
 @SessionScoped
 public class UserBean implements Serializable {
 
+	int counter =  0 ;
 	@Autowired
 	UserBo userBo;
+
+	@ManagedProperty("#{cart}")
+	private CartBean cart;
+
+	public CartBean getCart() {
+		return cart;
+	}
+
+	public void setCart(CartBean cart) {
+		this.cart = cart;
+	}
 
 	@PostConstruct
 	private void init() {
@@ -34,7 +43,7 @@ public class UserBean implements Serializable {
 
 	public String printMsgFromSpring() {
 		System.out.println(userBo);
-		return userBo.getMessage();
+		return userBo.getMessage() + counter++ + "CartBean counter: "+ cart.getCounter();
 //		return "AHOJ";
 	}
 
