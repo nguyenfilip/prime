@@ -11,10 +11,7 @@ import javax.faces.bean.SessionScoped;
 @ApplicationScoped
 public class CartBean {
     private int counter = 0;
-
     public int getCounter() {
         return counter++;
     }
-
-
 }

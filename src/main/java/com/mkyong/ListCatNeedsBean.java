@@ -20,9 +20,11 @@ public class ListCatNeedsBean implements Serializable {
 	int counter =  0 ;
 
 	private Dao dao = null;
+
 	@Autowired
 	UserBo userBo;
 
+	private CatNeed newNeed = new CatNeed();
 //	@ManagedProperty("#{cart}")
 //	private CartBean cart;
 //
@@ -54,5 +56,19 @@ public class ListCatNeedsBean implements Serializable {
 //	}
 	public List<CatNeed> getAllNeeds() {
 		return dao.listAllNeeds();
+	}
+
+	public CatNeed getNewNeed() {
+		return newNeed;
+	}
+
+	public void setNewNeed(CatNeed newNeed) {
+		this.newNeed = newNeed;
+	}
+
+	public String submitNewNeed() {
+		dao.save(newNeed);
+		newNeed = new CatNeed();
+		return "default?faces-redirect=true";
 	}
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+
+
+		 <h2>Create need</h2>
+			<h:form>
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+					<h:outputLabel for="name" value="Name:" style="font-weight:bold"/>
+					<p:inputText id="name" value="#{needs.newNeed.name}" label="Name" required="true" >
+						<f:validateLength minimum="2" maximum="8" />
+					</p:inputText>
+					<p:message for="name" />
+					<h:outputLabel for="type" value="Type:" style="font-weight:bold"/>
+					<p:selectOneMenu id="type" value="#{needs.newNeed.type}" labe="Type">
+						<f:selectItem itemValue="FOOD" itemLabel="Food" />
+						<f:selectItem itemValue="TOY" itemLabel="Toy" />
+						<f:selectItem itemValue="SAND" itemLabel="Sand" />
+					</p:selectOneMenu>
+					<p:message for="type" />
+				<p:commandButton value="submit"
+								 ajax="true"
+								 update="grid"
+								 action="#{needs.submitNewNeed}"
+								 validateClient="true" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

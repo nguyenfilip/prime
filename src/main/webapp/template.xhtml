@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<!--<f:view locale="en">-->
+<f:view>
+<h:head>
+
+    <h:outputScript library="js" name="locale.js" />
+</h:head>
+
+<h:body>
+
+
+
+    <ui:fragment rendered="#{not user.loggedIn}">
+
+        <p:fieldset legend="Login" style="margin-bottom:20px">
+            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                <h:form>
+                <h:outputLabel for="username" value="Username:" style="font-weight:bold"/>
+                <p:inputText id="username" value="#{login.username}" label="Username" required="true" >
+                    <f:validateLength minimum="2" maximum="8" />
+                </p:inputText>
+                <p:message for="username" />
+
+
+                <h:outputLabel for="password" value="Password:" style="font-weight:bold"/>
+                <p:password id="password" value="#{login.password}" label="Password" required="true" />
+                <p:message for="password" />
+
+                    <!--ajax="false"-->
+                    <!--update="logfragment"-->
+                    <p:commandButton value="submit"
+                                    ajax="false"
+                                     action="#{login.login}"
+                                     validateClient="true" />
+                </h:form>
+            </h:panelGrid>
+        </p:fieldset>
+    </ui:fragment>
+    <p:dialog header="Wrong password" widgetVar="dlg2" modal="true" visible="true" rendered="${login.error}" height="100">
+        <h:outputText value="Password is incorrect!" />
+    </p:dialog>
+
+    <ui:fragment rendered="#{user.loggedIn}">
+        <h:form>
+            <p>Welcome #{user.username}</p>
+            <h:commandLink action="#{user.logout}" value="Logout"></h:commandLink>
+        </h:form>
+    </ui:fragment>
+
+    <!-- The text is normal resource bundle that must be encoded in latin1
+         The tst is custome TestBundle.java that loads the bundle with UTF8 encoding-->
+    <h1>#{text['main.title']}</h1>
+    <!--<h1>#{tst['main.title']}</h1>-->
+
+
+
+    <ui:insert name="content"/>
+
+
+</h:body>
+    </f:view>
+</html>

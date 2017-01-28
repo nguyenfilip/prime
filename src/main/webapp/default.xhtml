@@ -6,33 +6,25 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-
-</h:head>
 
 <h:body>
- 
-    	<h1>Kočičí potřeby</h1>
+    <ui:composition template="template.xhtml">
+        <ui:define name="content">
+            <h2>Zásoby</h2>
+            <p:dataTable var="n" value="#{needs.allNeeds}">
+                <p:column headerText="Name">
+                    <h:outputText value="#{n.name}" />
+                </p:column>
+                <p:column headerText="Type">
+                    <h:outputText value="#{n.type}" />
+                </p:column>
+            </p:dataTable>
 
-  <table>
-    <ui:repeat var="n" value="#{needs.allNeeds}" varStatus="status">
-
-        <tr>
-            <td>#{n.name}</td>
-        </tr>
-
-    </ui:repeat>
-
-  </table>
-
-    <h1>Different</h1>
-    <h:dataTable value="#{needs.allNeeds}" var="n">
-        <h:column>
-            #{n.name}
-        </h:column>
-    </h:dataTable>
-
-
+            <!--<h:link value="Create new need" outcome="create_need" />-->
+            <p:button outcome="create_need" value="Create Need" icon="ui-icon-star">
+            </p:button>
+        </ui:define>
+    </ui:composition>
 </h:body>
- 
+
 </html>
