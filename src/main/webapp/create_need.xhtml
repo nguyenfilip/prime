@@ -14,8 +14,17 @@
 
 
 		 <h2>Create need</h2>
-			<h:form>
+			<h:form id="f" enctype="multipart/form-data">
+
+
 				<h:panelGrid id="grid" columns="3" cellpadding="5">
+
+					<h:outputLabel for="file" value="File:" style="font-weight:bold"/>
+					<p:fileUpload  id="file" value="#{needs.file}" mode="simple" skinSimple="true">
+						<f:validator validatorId="com.mkyong.FileUploadValidator"/>
+					</p:fileUpload>
+					<p:message for="file" />
+
 					<h:outputLabel for="name" value="Name:" style="font-weight:bold"/>
 					<p:inputText id="name" value="#{needs.newNeed.name}" label="Name" required="true" >
 						<f:validateLength minimum="2" maximum="8" />
@@ -28,8 +37,9 @@
 						<f:selectItem itemValue="SAND" itemLabel="Sand" />
 					</p:selectOneMenu>
 					<p:message for="type" />
+					<!-- Simple file upload doesn't support AJAX-->
 				<p:commandButton value="submit"
-								 ajax="true"
+								 ajax="false"
 								 update="grid"
 								 action="#{needs.submitNewNeed}"
 								 validateClient="true" />

@@ -1,8 +1,11 @@
 package com.mkyong;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * Created by maslo on 28.1.17.
@@ -12,7 +15,6 @@ import javax.faces.bean.RequestScoped;
 public class Login {
     private String password;
     private String username;
-    private Boolean error = false;
 
     public UserDetails getUserDetails() {
         return userDetails;
@@ -20,14 +22,6 @@ public class Login {
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
-    }
-
-    public Boolean getError() {
-        return error;
-    }
-
-    public void setError(Boolean error) {
-        this.error = error;
     }
 
     @ManagedProperty("#{user}")
@@ -53,8 +47,9 @@ public class Login {
     public String login() {
         if ("pass".equals(password)) {
             userDetails.setUsername(username);
-        } else
-            error = true;
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login error", "Please provide correct login and password"));
+        }
         return null;
     }
 }

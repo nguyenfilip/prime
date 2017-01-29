@@ -11,6 +11,9 @@
     <ui:composition template="template.xhtml">
         <ui:define name="content">
             <h2>Zásoby</h2>
+
+
+            <h:form>
             <p:dataTable var="n" value="#{needs.allNeeds}">
                 <p:column headerText="Name">
                     <h:outputText value="#{n.name}" />
@@ -18,8 +21,18 @@
                 <p:column headerText="Type">
                     <h:outputText value="#{n.type}" />
                 </p:column>
-            </p:dataTable>
 
+                 <p:column headerText="Delete">
+                <h:commandButton value="Delete"
+                                 action="#{needs.delete}"  >
+                     <f:setPropertyActionListener
+                             target="#{needs.toDelete}" value="#{n}" />
+
+                </h:commandButton>
+                 </p:column>
+
+            </p:dataTable>
+            </h:form>
             <!--<h:link value="Create new need" outcome="create_need" />-->
             <p:button outcome="create_need" value="Create Need" icon="ui-icon-star">
             </p:button>

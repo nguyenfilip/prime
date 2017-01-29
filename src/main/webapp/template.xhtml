@@ -17,11 +17,12 @@
 
 <h:body>
 
-
-
     <ui:fragment rendered="#{not user.loggedIn}">
 
         <p:fieldset legend="Login" style="margin-bottom:20px">
+
+            <p:messages globalOnly="true" />
+            <p:growl globalOnly="true"/>
             <h:panelGrid id="grid" columns="3" cellpadding="5">
                 <h:form>
                 <h:outputLabel for="username" value="Username:" style="font-weight:bold"/>
@@ -45,9 +46,6 @@
             </h:panelGrid>
         </p:fieldset>
     </ui:fragment>
-    <p:dialog header="Wrong password" widgetVar="dlg2" modal="true" visible="true" rendered="${login.error}" height="100">
-        <h:outputText value="Password is incorrect!" />
-    </p:dialog>
 
     <ui:fragment rendered="#{user.loggedIn}">
         <h:form>

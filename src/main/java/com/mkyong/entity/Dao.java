@@ -21,4 +21,8 @@ public class Dao implements Serializable {
     public void save(CatNeed newNeed) {
         needs.add(newNeed);
     }
+
+    public void delete(CatNeed toDelete) {
+        needs.remove(toDelete);
+    }
 }
