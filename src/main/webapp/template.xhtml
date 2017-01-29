@@ -17,12 +17,15 @@
 
 <h:body>
 
+    <p:graphicImage value="#{catStreamer.cat}" />
+
     <ui:fragment rendered="#{not user.loggedIn}">
 
+        <p:growl globalOnly="true" showDetail="true" id="growl"/>
         <p:fieldset legend="Login" style="margin-bottom:20px">
 
             <p:messages globalOnly="true" />
-            <p:growl globalOnly="true"/>
+
             <h:panelGrid id="grid" columns="3" cellpadding="5">
                 <h:form>
                 <h:outputLabel for="username" value="Username:" style="font-weight:bold"/>

@@ -91,26 +91,25 @@ public class ListCatNeedsBean implements Serializable {
 	public String submitNewNeed() {
 		if(file != null) {
 			System.out.println("FILE ISNT NULL!");
-			FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
+			FacesMessage message = new FacesMessage("Succesful", "New Cat Need created!");
+			FacesContext.getCurrentInstance().addMessage("growl", message);
 		} else {
 			FacesMessage message = new FacesMessage("ERROR", "ERROR");
-			FacesContext.getCurrentInstance().addMessage(null, message);
+			FacesContext.getCurrentInstance().addMessage("growl", message);
 			System.out.println("File is null!");
 		}
 
 		dao.save(newNeed);
 		newNeed = new CatNeed();
-//		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.putNow("xx", "FLASH SCOPED VALUE!");
+//		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+//		flash.putNow("xx", "FLASH SCOPED VALUE!");
 
-		return "default?faces-redirect=true";
+//		return "default?faces-redirect=true";
 
-//		return "default";
+		return "default";
 	}
-
 
 	public String delete() {
 		dao.delete(toDelete);

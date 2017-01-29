@@ -21,6 +21,7 @@ public class FileUploadValidator implements Validator {
                          Object value) throws ValidatorException {
 
         UploadedFile file = (UploadedFile) value;
+        System.out.println("File name null: "+ (file.getFileName() == null));
         System.out.println("File name: "+ file.getFileName());
         System.out.println("File size: "+ file.getSize());
         if (file.getFileName() == null || file.getFileName().equals("")) {
