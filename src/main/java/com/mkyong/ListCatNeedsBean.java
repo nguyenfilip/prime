@@ -115,4 +115,9 @@ public class ListCatNeedsBean implements Serializable {
 		dao.delete(toDelete);
 		return null;
 	}
+
+	public String customScope() {
+		System.out.println("Creating custom scope");
+		return null;
+	}
 }

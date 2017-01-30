@@ -6,6 +6,8 @@
         version="2.0">
 
     <application>
+        <el-resolver>com.mkyong.CustomELResolver</el-resolver>
+
         <message-bundle>MyMessages</message-bundle>
         <resource-bundle>
             <base-name>Text</base-name>

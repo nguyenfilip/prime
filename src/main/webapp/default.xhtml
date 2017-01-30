@@ -35,6 +35,16 @@
 
             </p:dataTable>
             </h:form>
+
+
+            <h:form>
+
+                <h:commandButton value="Custom Scope" action="#{needs.customScope}">
+                    <f:actionListener type="com.mkyong.scope.CreateCustomScope" />
+                </h:commandButton>
+
+            </h:form>
+
             <!--<h:link value="Create new need" outcome="create_need" />-->
             <p:button outcome="create_need" value="Create Need" icon="ui-icon-star">
             </p:button>
